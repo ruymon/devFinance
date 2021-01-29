@@ -1,6 +1,14 @@
 /* ========== Global ========== */
 :root {
+    --bg-main: #F0F2F5;
+    --bg-header: #2D4A22;
     --dark-blue: #363f5f;
+    --light-gray: #969CB3;
+    --income-green: #12a454;
+    --light-green: #3dd705;
+    --green: #49AA26;
+    --red: #e92929;
+
 }
 
 * {
@@ -9,9 +17,25 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 93.75%; /*15 Pixels */
+}
+
 body {
-    background: #F0F2F5;
+    background: var(--bg-main);
     font-family: 'Poppins', sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin:-1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -28,16 +52,67 @@ h2 {
     font-weight: normal;
 }
 
-/* ========== Header ========== */
-header {
-    background: #2D4A22;
-    padding: 2rem 0 10rem;
-    text-align: center;
+/* ========== Links and Buttons ========== */
+
+a {
+    color: var(--green);
+    text-decoration: none;
+    cursor: pointer;
 }
 
-header h1 {
+a:hover {
+    color: var(--light-green);
+}
+
+button {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+
     color: #fff;
-    font-weight: 100;
+
+    background: var(--green);
+
+    padding: 0;
+
+    border-radius: 0.25rem;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--light-green);
+}
+
+.button.new {
+    display: inline-block;
+    margin-bottom: .8rem;
+}
+
+.button.cancel {
+    color: var(--red);
+    border: 2px var(--red) solid;
+    border-radius: 0.25rem;
+
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0.6;
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
+
+/* ========== Header ========== */
+header {
+    background: var(--bg-header);
+    padding: 2rem 0 10rem;
+    text-align: center;
 }
 
 /* ========== Balance ========== */
@@ -64,6 +139,10 @@ header h1 {
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card p {
@@ -75,20 +154,31 @@ header h1 {
 }
 
 .card.total {
-    background: #49AA26;
+    background: var(--green);
     color: #fff;
 }
 
 /* ========== Table ========== */
+#transaction {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
-    color: #969CB3;
+    color: var(--light-gray);
 }
 
 table thead tr th:first-child,
 table tbody tr td:first-child {
     border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child,
+table tbody tr td:last-child {
+    border-radius: 0 0.25rem 0.25rem 0;
 }
 
 table th {
@@ -116,12 +206,81 @@ td.description {
 }
 
 td.income {
-    color: #12a454;
+    color: var(--income-green);
 }
 
 td.expense {
-    color: #e92929;
+    color: var(--red);
 }
+
+/* ========== Modal ========== */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    z-index: 999;
+}
+
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--bg-main);
+    padding: 2.4rem;
+
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== Modal - Form ========== */
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+.input-group input {
+    border: none;
+    border-radius: 0.2rem;
+
+    padding: 0.8rem;
+
+    width: 100%;
+}
+
+.input-group {
+    margin-top: 0.8rem;
+}
+
+.input-group small {
+    opacity: 0.4;
+}
+
+.input-group.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-group.actions .button,
+.input-group.actions button{
+    width: 48%;
+}
+
+
 
 /* ========== Footer ========== */
 footer {
@@ -129,4 +288,20 @@ footer {
     padding: 4rem 0 2rem;
     color: var(--dark-blue);
     opacity: 0.6;
+}
+
+
+/* ========== Responsive ========== */
+
+@media (min-width: 800px) {
+    html {
+        font-size: 87.5%; /* 14px */
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
 }
