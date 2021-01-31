@@ -2,11 +2,13 @@
 :root {
     --bg-main: #F0F2F5;
     --bg-header: #2D4A22;
+    --bg-header-bkup: #52225e;
     --dark-blue: #363f5f;
     --light-gray: #969CB3;
     --income-green: #12a454;
     --light-green: #3dd705;
     --green: #49AA26;
+    --green-bkup: #2696aa;
     --red: #e92929;
 
 }
